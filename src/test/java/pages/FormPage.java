@@ -23,16 +23,15 @@ public class FormPage extends CommonPage {
     public WebElement email;
 
     @FindBy(xpath = "//input[@id='dateOfBirthInput']")
-    public WebElement dateOfBirth;
+    public WebElement dateOfBirthInput;
     @FindBy(xpath = "//select[@class='react-datepicker__month-select']")
-    public WebElement monthDropdown;
-    @FindBy(xpath = "//select[@class='react-datepicker__month-select']/option[text()='May']")
     public WebElement selectMonth;
-    @FindBy(xpath = "//select[contains(@class, '_year-select')]")
-    public WebElement yearDropdown;
-    @FindBy(xpath = "//select[contains(@class, '_year-select')]/option[@value='1990']")
-    public WebElement Selectyear;
-
+    @FindBy(xpath = "//select[@class='react-datepicker__year-select']")
+    public WebElement selectYear;
+    @FindBy(xpath = "//div[@role='option' and text()='29']")
+    public WebElement selectDay;
+    @FindBy(xpath = "//input[@value='29 May 2000']")
+    public WebElement dateOfBirth;
     @FindBy(xpath = "//input[@id='subjectsInput']")
     public WebElement Subjects;
     @FindBy(xpath = "//input[@id='hobbies-checkbox-1']")

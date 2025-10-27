@@ -22,7 +22,7 @@ public class US_001_FormunDüzgünDoldurulması extends CommonPage {
     @Given("istifadəçi ana səhifəyə daxil olur")
     public void istifadəçiAnaSəhifəyəDaxilOlur() {
         Driver.getDriver().get(ConfigurationReader.getProperty("url1"));
-        ReusableMethods.waitFor(2);
+        ReusableMethods.waitFor(1);
         driver.manage().deleteAllCookies();
     }
 
@@ -30,7 +30,7 @@ public class US_001_FormunDüzgünDoldurulması extends CommonPage {
     public void istifadəçiAnaSəhifəyəUğurlaDaxilOlduğunuYoxlayır() {
         //PracticeForm elementinin gorunduyunu yoxla
         ReusableMethods.verifyElementDisplayed(getFormPage().practiceForm);
-        ReusableMethods.waitFor(2);
+        ReusableMethods.waitFor(1);
     }
 
     @And("formu düzgün məlumatlarla doldurur")
@@ -43,40 +43,54 @@ public class US_001_FormunDüzgünDoldurulması extends CommonPage {
 
         //Ad yaz
         getFormPage().firstName.sendKeys("Mehseti");
-        ReusableMethods.waitFor(2);
+        ReusableMethods.waitFor(1);
 
-//        //Soyad xanasına klik et
-//
+//       //Soyad xanasına klik et
         getFormPage().lastName.click();
-        ReusableMethods.waitFor(2);
+        ReusableMethods.waitFor(1);
 //
 //        //Soyad yaz
         getFormPage().lastName.sendKeys("Umarova");
-        ReusableMethods.waitFor(2);
+        ReusableMethods.waitFor(1);
 //
 //        //email xanasına random email gonder
         getFormPage().email.sendKeys(faker.internet().emailAddress());
-        ReusableMethods.waitFor(2);
-//
+        ReusableMethods.waitFor(1);
+
 //        //Cinsiyyət qadın seç
         JS_utilities.scrollAndClickWithJS(getFormPage().genderFemale);
-        ReusableMethods.waitFor(2);
+        ReusableMethods.waitFor(1);
 //
 //        //random mobil nomre yaz
         getFormPage().mobile.sendKeys(faker.number().digits(10));
-        ReusableMethods.waitFor(2);
+        ReusableMethods.waitFor(1);
+
+        //Doğum günü seç
+        JS_utilities.clickElementByJS(getFormPage().dateOfBirthInput);
+        Select select = new Select(getFormPage().selectMonth);
+        ReusableMethods.waitFor(1);
+        select.selectByVisibleText("May");
+        ReusableMethods.waitFor(1);
+        Select select2 = new Select(getFormPage().selectYear);
+        ReusableMethods.waitFor(1);
+        select2.selectByVisibleText("2000");
+        ReusableMethods.waitFor(1);
+        ReusableMethods.doubleClick(getFormPage().selectDay);
+        ReusableMethods.waitFor(3);
+        ReusableMethods.verifyElementDisplayed(getFormPage().dateOfBirth);
+        ReusableMethods.waitFor(1);
 //
 //        //Movzu xanasına yazı yaz
         getFormPage().Subjects.sendKeys("TEST_AUTOMATION");
-        ReusableMethods.waitFor(2);
+        ReusableMethods.waitFor(1);
 //
 //        //Hobbilərin hər üçünü seç
         JS_utilities.clickElementByJS(getFormPage().hobbiesSport);
-        ReusableMethods.waitFor(2);
+        ReusableMethods.waitFor(1);
         JS_utilities.clickElementByJS(getFormPage().hobbieReading);
-        ReusableMethods.waitFor(2);
+        ReusableMethods.waitFor(1);
         JS_utilities.clickElementByJS(getFormPage().hobbiesMusic);
-        ReusableMethods.waitFor(2);
+        ReusableMethods.waitFor(1);
 //
 //        //Şəkil upload et
         JS_utilities.scrollIntoViewJS(getFormPage().chooseFile);
@@ -90,37 +104,36 @@ public class US_001_FormunDüzgünDoldurulması extends CommonPage {
 //
 //        // Sonra metodu çağır
         ReusableMethods.uploadFilePath(filePath);
-        ReusableMethods.waitFor(2);
+        ReusableMethods.waitFor(1);
         ReusableMethods.uploadFilePath(filePath);
-        ReusableMethods.waitFor(2);
+        ReusableMethods.waitFor(1);
 //
 //        //hazirki adress
-//
         getFormPage().currentAddress.sendKeys("Baki");
-        ReusableMethods.waitFor(2);     ReusableMethods.waitFor(2);
+        ReusableMethods.waitFor(1);     ReusableMethods.waitFor(1);
         //Ölkə seç
         ((JavascriptExecutor) driver).executeScript("document.querySelectorAll('iframe[id^=\"google_ads_iframe\"]').forEach(el => el.remove());");
         JS_utilities.scrollAndClickWithJS(getFormPage().state4);
         ReusableMethods.doubleClick(getFormPage().state4);
-        ReusableMethods.waitFor(2);
+        ReusableMethods.waitFor(1);
         ReusableMethods.clickElement(getFormPage().state4, ReusableMethods.ClickType.ACTIONS);
-        ReusableMethods.waitFor(2);
+        ReusableMethods.waitFor(1);
         ReusableMethods.clickElement(getFormPage().SelectState, ReusableMethods.ClickType.ACTIONS);
-        ReusableMethods.waitFor(2);
+        ReusableMethods.waitFor(1);
 //        //Sheher sec
         ReusableMethods.doubleClick(getFormPage().city);
-        ReusableMethods.waitFor(2);
+        ReusableMethods.waitFor(1);
         ReusableMethods.clickElement(getFormPage().city, ReusableMethods.ClickType.ACTIONS);
-        ReusableMethods.waitFor(2);
+        ReusableMethods.waitFor(1);
         ReusableMethods.clickElement(getFormPage().SelectCity, ReusableMethods.ClickType.ACTIONS);
-        ReusableMethods.waitFor(2);
+        ReusableMethods.waitFor(1);
     }
 
     @And("Submit düyməsinə klikləyir")
     public void submitDüyməsinəKlikləyir() {
 
         getFormPage().submit.click();
-        ReusableMethods.waitFor(2);
+        ReusableMethods.waitFor(1);
 
     }
 
@@ -128,10 +141,10 @@ public class US_001_FormunDüzgünDoldurulması extends CommonPage {
     public void formunDüzgünDoğrulandığınıTəsdiqləyir() {
 
         ReusableMethods.verifyElementDisplayed(getFormPage().submittingForm);
-        ReusableMethods.waitFor(2);
+        ReusableMethods.waitFor(1);
         JS_utilities.scrollIntoViewJS(getFormPage().CloseSubmittingPage);
         JS_utilities.clickElementByJS(getFormPage().CloseSubmittingPage);
-        ReusableMethods.waitFor(2);
+        ReusableMethods.waitFor(1);
 
     }
 }
